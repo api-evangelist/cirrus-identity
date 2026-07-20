@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/cirrus-identity-log-api-openapi.json
+docs: https://blog.cirrusidentity.com/documentation/log-api-credentials
+notes: >
+  Log API endpoints require HTTP Basic authentication using Log API credentials
+  provisioned in the Cirrus Console.
+summary:
+  types:
+  - http
+schemes:
+- name: HTTPBasic
+  type: http
+  scheme: basic
+  sources:
+  - openapi/cirrus-identity-log-api-openapi.json
