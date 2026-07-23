@@ -1,0 +1,272 @@
+openapi: 3.1.0
+info:
+  title: Cirrus Identity Log endpoints API
+  description: "\nAll endpoints require HTTP Basic authentication using\n[Cirrus Identity Log API credentials](https://blog.cirrusidentity.com/documentation/log-api-credentials),\nprovisioned in the Cirrus Console. \n\n## `/logs/v1/orgUrls`\n\nReturns a list of permitted `orgUrls` for the provided credentials.\n\n## `/logs/v1/orgLogs`\n\nReturns logs for a specific `orgUrl` value. Expand the `/orgLogs` endpoint (below)\nfor details on parameters and schema.\n"
+  version: 1.0.3
+servers:
+- url: /logs/v1
+tags:
+- name: endpoints
+paths:
+  /orgLogs:
+    get:
+      tags:
+      - endpoints
+      summary: Return logs for a specified orgUrl
+      description: "Returns an array of log events for the specified `orgUrl` value.\n\n### Query parameters\n\n- `orgUrl` (**required**): the organization URL for which to retrieve logs. This must match\n  your organization URL from the Cirrus Console _**exactly**_, including any trailing `/`.\n- `nextToken` (optional): token returned from a previous call to URL, logs returned\n  will start at the next record following the one referenced by this token. If not provided,\n  logs returned will start at 1 hour ago from the current time.\n- `limit` (optional): a value between 1 - 1000 indicating the number of log events to return.\n  Default is 1000.\n- filter parameters (all optional) -- these can be used to filter the results\n  - `service`: the service (e.g., *proxy* or *bridge*)\n  - `logType`: the log event type (e.g, *authentication* or *cas*)\n  - `logSubtype`: the log event sub-type (e.g., *request* or *success*)\n  - `tenant`: the tenant name\n\n### Rate Limiting\n\nTo avoid rate limiting, Cirrus Identity recommends a delay of at least five minutes between\nretrieval of sets of logs. For best results, consider enforcing this delay once the `/orgLogs`\nAPI response contains fewer log events than requested (via the `limit` parameter, up to the\nmaximum of 1000 log events)."
+      operationId: get_org_logs
+      security:
+      - HTTPBasic: []
+      parameters:
+      - name: orgUrl
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uri
+          minLength: 1
+          title: Orgurl
+      - name: nextToken
+        in: query
+        required: false
+        schema:
+          type: string
+          format: uuid
+          title: Nexttoken
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 1000
+          exclusiveMinimum: 0
+          default: 1000
+          title: Limit
+      - name: logType
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/LogTypesEnum'
+      - name: logSubtype
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/LogSubtypesEnum'
+      - name: tenant
+        in: query
+        required: false
+        schema:
+          type: string
+          title: Tenant
+      - name: service
+        in: query
+        required: false
+        schema:
+          $ref: '#/components/schemas/ServiceTypesEnum'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogApiResponse'
+              example:
+                ref: https://api.cirrusidentity.com/logs/v1/orgLogs?orgUrl=http%3A%2F%2Finstitution.edu%2F
+                next: https://api.cirrusidentity.com/logs/v1/orgLogs?orgUrl=http%3A%2F%2Finstitution.edu%2F&nextToken=018ec539-2f4d-7e4c-9310-46ef060440a8
+                nextToken: 018ec539-2f4d-7e4c-9310-46ef060440a8
+                count: 1
+                logEvents:
+                - logType: authentication
+                  timeStampISO: '2024-04-09T23:37:16+00:00'
+                  orgDomain: institution.edu
+                  service: bridge
+                  clientIP: 1.2.3.4
+                  logSubtype: request
+                  correlationId: 757769a369
+                  orgUrl: http://institution.edu/
+                  tenant: institution-bridge
+                  logData:
+                    spEntityId: https://institution-bridge.proxy.cirrusidentity.com/bridge
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              example:
+                detail: invalid API authentication
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              example:
+                detail: Not authorized for org
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              example:
+                detail: unknown error
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /orgUrls:
+    get:
+      tags:
+      - endpoints
+      summary: Return a list of permitted orgUrls
+      description: 'Returns an array of `orgUrl` values that the current authenticated user is
+
+        permitted to use (in the `orgUrl` query parameter for the `/` endpoint)
+
+        for retrieving logs.'
+      operationId: get_orgs
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema: {}
+              example:
+                orgUrls:
+                - http://www.institution.edu
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              example:
+                detail: invalid API authentication
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              example:
+                detail: unknown error
+      security:
+      - HTTPBasic: []
+components:
+  schemas:
+    LogApiResponse:
+      properties:
+        ref:
+          type: string
+          minLength: 1
+          format: uri
+          title: Ref
+          description: the URL called to elicit this response
+        next:
+          type: string
+          minLength: 1
+          format: uri
+          title: Next
+          description: URL to call to retrieve next set of log events
+        nextToken:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Nexttoken
+          description: token for retrieving next set of log events
+        count:
+          type: integer
+          title: Count
+          description: number of log events returned in this response
+        logEvents:
+          items:
+            type: object
+          type: array
+          title: Logevents
+          description: array of log event objects
+      type: object
+      required:
+      - ref
+      - next
+      - count
+      - logEvents
+      title: LogApiResponse
+      description: wrapper response for log items
+    LogSubtypesEnum:
+      type: string
+      enum:
+      - authenticationSuccess
+      - authorize
+      - error
+      - expiredCode
+      - failure
+      - idToken
+      - invalidCode
+      - login
+      - logout
+      - manage
+      - noEmail
+      - queued
+      - request
+      - samlValidate
+      - send
+      - sent
+      - serviceValidate
+      - success
+      - token
+      - userinfo
+      - validate
+      title: LogSubtypesEnum
+      description: enum for Cirrus log subtypes
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    LogTypesEnum:
+      type: string
+      enum:
+      - account
+      - authentication
+      - cas
+      - create
+      - emailMFA
+      - oidc
+      - password
+      - sending
+      title: LogTypesEnum
+      description: enum for Cirrus log types
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ServiceTypesEnum:
+      type: string
+      enum:
+      - bridge
+      - gateway
+      - idGeneration
+      - idp
+      - mail
+      - proxy
+      title: ServiceTypesEnum
+      description: enum for valid Cirrus services
+  securitySchemes:
+    HTTPBasic:
+      type: http
+      scheme: basic
