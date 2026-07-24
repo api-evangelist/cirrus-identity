@@ -1,0 +1,34 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cirrus-identity-log-api-openapi.json
+format: plain-json
+notes: >
+  The Log API returns errors as a plain JSON object with a single `detail`
+  string field (FastAPI style). It does not use RFC 9457 application/problem+json.
+envelope:
+  field: detail
+  media_type: application/json
+problems:
+- status: 401
+  title: Authentication failed
+  detail_example: invalid API authentication
+  source_operations:
+  - openapi/cirrus-identity-log-api-openapi.json#get_org_logs
+  - openapi/cirrus-identity-log-api-openapi.json#get_orgs
+- status: 403
+  title: Unauthorized
+  detail_example: Not authorized for org
+  source_operations:
+  - openapi/cirrus-identity-log-api-openapi.json#get_org_logs
+- status: 422
+  title: Validation Error
+  schema: HTTPValidationError
+  detail_example: array of ValidationError (loc, msg, type)
+  source_operations:
+  - openapi/cirrus-identity-log-api-openapi.json#get_org_logs
+- status: 500
+  title: Internal Server Error
+  detail_example: unknown error
+  source_operations:
+  - openapi/cirrus-identity-log-api-openapi.json#get_org_logs
+  - openapi/cirrus-identity-log-api-openapi.json#get_orgs

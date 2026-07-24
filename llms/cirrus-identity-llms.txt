@@ -1,0 +1,37 @@
+# Cirrus Identity
+
+> Cirrus Identity provides managed identity and access management for higher education, connecting modern identity providers, federations, and legacy systems to standardize authentication across campus environments. It publishes a REST Log API for retrieving authentication and service event logs.
+
+## APIs
+- [Cirrus Identity Log API](https://www.cirrusidentity.com/documentation/api): Retrieve authentication and service event logs for your organization (HTTP Basic auth, cursor paging). Base URL https://api.cirrusidentity.com/logs/v1
+
+## Specs
+- [Log API OpenAPI 3.1](https://api.cirrusidentity.com/logs/v1/openapi.json)
+- [Log API reference (Swagger UI)](https://api.cirrusidentity.com/logs/v1/docs)
+
+## Products
+- [Cirrus Bridge](https://www.cirrusidentity.com/products/bridge): Multilateral SAML & CAS for Entra ID, Okta, Duo SSO and others
+- [External User Sign-In](https://www.cirrusidentity.com/products/external): Authentication with user-preferred credentials
+- [Trusted Federation & Affiliates Sign-In](https://www.cirrusidentity.com/products/federation)
+- [Slate Applicant Sign-In Extension](https://www.cirrusidentity.com/products/slate)
+- [Admin Console & Logs](https://www.cirrusidentity.com/products/console-new)
+
+## Docs
+- [Documentation home](https://cirrusidentity.com/documentation)
+- [Bridge documentation](https://www.cirrusidentity.com/documentation/bridge)
+- [Proxy documentation](https://www.cirrusidentity.com/documentation/proxy)
+- [Console documentation](https://www.cirrusidentity.com/documentation/console)
+- [Log API credentials](https://blog.cirrusidentity.com/documentation/log-api-credentials)
+
+## Open source
+- [Cirrus Identity on GitHub](https://github.com/cirrusidentity): SimpleSAMLphp modules (authoauth2, ratelimit, cirrusgeneral, shib2idpnameid)
+
+## Trust
+- [Trust & Compliance Center](https://www.cirrusidentity.com/resources/trust-and-compliance-center): SOC 2 Type 2, TX-RAMP Level 1; responsible disclosure security@cirrusidentity.com
+
+## More
+- [Blog](https://www.cirrusidentity.com/blog)
+- [Support Center](https://www.cirrusidentity.com/resources/support-center)
+- [Console login](https://apps.cirrusidentity.com/console/auth/index)
+- [Terms of Service](https://www.cirrusidentity.com/terms-of-service)
+- [Privacy Policy](https://www.cirrusidentity.com/privacy-policy)

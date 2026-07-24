@@ -1,0 +1,7 @@
+generated: '2026-07-18'
+method: generated
+skills:
+- file: cirrus-identity-export-org-logs.md
+  name: Export Cirrus Identity org logs
+  api: openapi/cirrus-identity-log-api-openapi.json
+  operations: [get_orgs, get_org_logs]

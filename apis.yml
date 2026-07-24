@@ -1,7 +1,27 @@
 aid: cirrus-identity
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cirrus-identity.png
 name: Cirrus Identity
-description: Cirrus Identity is a company surfaced as a portfolio company of 500-global and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Cirrus Identity provides managed identity and access management for higher education,
+  connecting modern identity providers, federations, and legacy systems to standardize
+  authentication across campus environments without replacing existing infrastructure.
+  Its products include Cirrus Bridge (multilateral SAML & CAS for Entra ID, Okta, and
+  Duo SSO), External User Sign-In, Trusted Federation & Affiliates Sign-In, a Slate
+  applicant sign-in extension, and an Admin Console with event logs. Cirrus also publishes
+  a REST Log API for programmatically retrieving authentication and service event logs,
+  and maintains a suite of open-source SimpleSAMLphp modules on GitHub and Packagist.
 url: https://raw.githubusercontent.com/api-evangelist/cirrus-identity/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,15 +31,99 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-apis: []
+- Identity
+- Authentication
+- Single Sign-On
+- SAML
+- OIDC
+- Higher Education
+- Identity Management
+- Federation
+- Logs
+apis:
+- aid: cirrus-identity:cirrus-identity-endpoints-api
+  name: Cirrus Identity endpoints API
+  description: The endpoints API from Cirrus Identity — 2 operation(s) for endpoints.
+  humanURL: https://www.cirrusidentity.com/documentation/api
+  baseURL: https://api.cirrusidentity.com/logs/v1
+  tags:
+  - endpoints
+  properties:
+  - type: OpenAPI
+    url: openapi/cirrus-identity-endpoints-api-openapi.yml
+  - type: APIReference
+    url: https://api.cirrusidentity.com/logs/v1/docs
+  - type: Documentation
+    url: https://blog.cirrusidentity.com/documentation/log-api-credentials
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://cirrusidentity.com/documentation
+- type: Documentation
+  url: https://cirrusidentity.com/documentation
+- type: APIReference
+  url: https://api.cirrusidentity.com/logs/v1/docs
+- type: Blog
+  url: https://www.cirrusidentity.com/blog
+- type: Support
+  url: https://www.cirrusidentity.com/resources/support-center
+- type: GitHubOrganization
+  url: https://github.com/cirrusidentity
+- type: Login
+  url: https://apps.cirrusidentity.com/console/auth/index
+- type: SignUp
+  url: https://www.cirrusidentity.com/talk-to-us
+- type: TermsOfService
+  url: https://www.cirrusidentity.com/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.cirrusidentity.com/privacy-policy
+- type: TrustCenter
+  url: https://www.cirrusidentity.com/resources/trust-and-compliance-center
+- type: Compliance
+  url: https://www.cirrusidentity.com/resources/trust-and-compliance-center
+- type: Security
+  url: https://www.cirrusidentity.com/resources/trust-and-compliance-center
+- type: Authentication
+  url: authentication/cirrus-identity-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/cirrus-identity-agentic-access.yml
+- type: DomainSecurity
+  url: security/cirrus-identity-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/cirrus-identity-vulnerability-disclosure.yml
+- type: ErrorCatalog
+  url: errors/cirrus-identity-problem-types.yml
+- type: Conventions
+  url: conventions/cirrus-identity-conventions.yml
+- type: DataModel
+  url: data-model/cirrus-identity-data-model.yml
+- type: Overlay
+  url: overlays/cirrus-identity-log-api-overlay.yaml
+- type: MCPServer
+  url: mcp/cirrus-identity-mcp.yml
+- type: Lifecycle
+  url: lifecycle/cirrus-identity-lifecycle.yml
+- type: Conformance
+  url: conformance/cirrus-identity-conformance.yml
+- type: Vocabulary
+  url: vocabulary/cirrus-identity-log-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Packages
+  url: packages/cirrus-identity-packages.yml
+- type: LLMsTxt
+  url: llms/cirrus-identity-llms.txt
 - type: Website
   url: https://cirrusidentity.com
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

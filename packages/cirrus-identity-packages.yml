@@ -1,0 +1,56 @@
+generated: '2026-07-18'
+method: searched
+source: https://packagist.org/packages/cirrusidentity/
+notes: >
+  Cirrus Identity's first-party published libraries are open-source SimpleSAMLphp
+  modules on Packagist / GitHub (identity-provider tooling), not client SDKs for the
+  Log API. Catalogued here as official packages; no per-language API SDK is published.
+packages:
+- language: php
+  registry: packagist
+  name: cirrusidentity/simplesamlphp-module-authoauth2
+  url: https://packagist.org/packages/cirrusidentity/simplesamlphp-module-authoauth2
+  install: composer require cirrusidentity/simplesamlphp-module-authoauth2
+  description: OAuth2/OIDC authentication source module for SimpleSAMLphp.
+  downloads: 111661
+  official: true
+- language: php
+  registry: packagist
+  name: cirrusidentity/simplesamlphp-module-ratelimit
+  url: https://packagist.org/packages/cirrusidentity/simplesamlphp-module-ratelimit
+  install: composer require cirrusidentity/simplesamlphp-module-ratelimit
+  description: Rate limit actions such as username/password login in SimpleSAMLphp.
+  downloads: 25548
+  official: true
+- language: php
+  registry: packagist
+  name: cirrusidentity/simplesamlphp-module-cirrusgeneral
+  url: https://packagist.org/packages/cirrusidentity/simplesamlphp-module-cirrusgeneral
+  install: composer require cirrusidentity/simplesamlphp-module-cirrusgeneral
+  description: Various SimpleSAMLphp filters and utilities developed by Cirrus Identity.
+  downloads: 4160
+  official: true
+- language: php
+  registry: packagist
+  name: cirrusidentity/simplesamlphp-module-shib2idpnameid
+  url: https://packagist.org/packages/cirrusidentity/simplesamlphp-module-shib2idpnameid
+  install: composer require cirrusidentity/simplesamlphp-module-shib2idpnameid
+  description: Generate PairwiseID/PersistentNameID with the same algorithm as Shibboleth IdP.
+  downloads: 216
+  official: true
+- language: php
+  registry: packagist
+  name: cirrusidentity/simplesamlphp-test-utils
+  url: https://packagist.org/packages/cirrusidentity/simplesamlphp-test-utils
+  install: composer require cirrusidentity/simplesamlphp-test-utils
+  description: Utilities to aid in testing SimpleSAMLphp modules.
+  downloads: 4017
+  official: true
+- language: php
+  registry: packagist
+  name: cirrusidentity/simplesamlphp-utils
+  url: https://packagist.org/packages/cirrusidentity/simplesamlphp-utils
+  install: composer require cirrusidentity/simplesamlphp-utils
+  description: Utility classes for SimpleSAMLphp modules.
+  downloads: 1701
+  official: true

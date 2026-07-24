@@ -1,0 +1,18 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.cirrusidentity.com/resources/trust-and-compliance-center
+url: https://www.cirrusidentity.com/resources/trust-and-compliance-center
+certifications:
+- SOC 2 Type 2
+- TX-RAMP Level 1
+standards_referenced:
+- HECVAT
+- WCAG
+evidence:
+- source: https://www.cirrusidentity.com/resources/trust-and-compliance-center
+  keywords: [soc 2 type 2, tx-ramp level 1, hecvat, trust and compliance center]
+notes: >
+  Cirrus Identity has completed a SOC 2 Type 2 audit (full report available on request
+  via support@cirrusidentity.com) and holds TX-RAMP (Texas Risk and Authorization
+  Management Program) Level 1 certification. No ISO 27001, HIPAA, PCI, or FedRAMP
+  certification is claimed on the trust page.

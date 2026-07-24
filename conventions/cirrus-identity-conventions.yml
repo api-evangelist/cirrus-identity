@@ -1,0 +1,46 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/cirrus-identity-log-api-openapi.json
+docs: https://blog.cirrusidentity.com/documentation/log-api-credentials
+authentication:
+  style: http-basic
+  detail: >
+    All Log API endpoints require HTTP Basic authentication using Cirrus Identity
+    Log API credentials provisioned in the Cirrus Console.
+  cross_ref: authentication/cirrus-identity-authentication.yml
+pagination:
+  style: cursor
+  request_params:
+  - name: nextToken
+    in: query
+    description: UUID token from a previous response; results start after that record. Defaults to logs from one hour ago when omitted.
+  - name: limit
+    in: query
+    description: Number of log events to return, 1-1000. Default 1000.
+  response_fields:
+  - next
+  - nextToken
+  - count
+  - ref
+  notes: >
+    Follow the `next` URL (which embeds `nextToken`) to page forward through log events.
+filtering:
+  params: [service, logType, logSubtype, tenant, orgUrl]
+  notes: orgUrl is required and must match the Cirrus Console value exactly, including any trailing slash.
+rate_limiting:
+  documented: true
+  guidance: >
+    Cirrus recommends at least a five-minute delay between retrievals of sets of logs;
+    enforce the delay once a response returns fewer events than the requested limit.
+  signaling: none-documented
+  cross_ref: null
+idempotency:
+  supported: false
+  notes: Read-only API (GET only); no idempotency-key contract.
+versioning:
+  scheme: uri-path
+  current: v1
+  spec_version: 1.0.3
+error_envelope:
+  field: detail
+  cross_ref: errors/cirrus-identity-problem-types.yml

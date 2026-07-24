@@ -1,0 +1,17 @@
+generated: '2026-07-18'
+method: probed
+hosts:
+- host: https://cirrusidentity.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+- host: https://api.cirrusidentity.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 404
+notes: >
+  No /.well-known discovery documents were served. The company operates OIDC/SAML
+  IdP products on per-tenant proxy hosts, but no discovery document is exposed on the
+  apex or API hosts probed.

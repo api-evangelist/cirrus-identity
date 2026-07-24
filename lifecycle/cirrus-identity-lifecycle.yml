@@ -1,0 +1,19 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cirrus-identity-log-api-openapi.json
+versioning:
+  scheme: uri-path
+  current: v1
+  spec_version: 1.0.3
+  docs: https://www.cirrusidentity.com/documentation/api
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation/sunset policy located.
+sla:
+  url: null
+status_page: null
+status_page_notes: >
+  No dedicated public status page located; support is handled through
+  https://www.cirrusidentity.com/resources/support-center (Freshdesk).
+deprecated_operations: []

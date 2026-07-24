@@ -1,0 +1,27 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cirrus-identity-log-api-openapi.json
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: spec declares openapi 3.1.0
+- id: http-basic-auth
+  conforms: true
+  evidence: securitySchemes HTTPBasic type http scheme basic
+- id: cursor-pagination
+  conforms: true
+  evidence: nextToken cursor + next URL in LogApiResponse
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors returned as plain JSON { detail } not application/problem+json
+- id: oauth2
+  conforms: false
+- id: oidc
+  conforms: false
+  evidence: company operates OIDC/SAML IdP products, but the Log API itself uses HTTP Basic
+- id: soc2-type2
+  conforms: true
+  evidence: SOC 2 Type 2 audit completed (trust-and-compliance-center)
+- id: tx-ramp-level-1
+  conforms: true
+  evidence: TX-RAMP Level 1 certified (trust-and-compliance-center)

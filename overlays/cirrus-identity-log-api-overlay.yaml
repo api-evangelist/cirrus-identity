@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Cirrus Identity Log API
+  version: 1.0.0
+extends: openapi/cirrus-identity-log-api-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-18'
+    x-api-evangelist-provider: cirrus-identity
+    x-authentication: http-basic
+    x-pagination-style: cursor
+- target: $.info
+  update:
+    x-rate-limit-guidance: >-
+      Recommend a minimum five-minute delay between retrievals of sets of logs;
+      back off once a response returns fewer events than the requested limit.

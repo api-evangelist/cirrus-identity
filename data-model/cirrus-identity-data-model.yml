@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cirrus-identity-log-api-openapi.json
+entities:
+- name: LogApiResponse
+  description: Wrapper response for a page of log events.
+  fields: [ref, next, nextToken, count, logEvents]
+  relationships:
+  - type: has_many
+    target: LogEvent
+    via: logEvents
+- name: LogEvent
+  description: A single authentication or service event object.
+  fields: [logType, timeStampISO, orgDomain, service, clientIP, logSubtype, correlationId, orgUrl, tenant, logData]
+  relationships:
+  - type: belongs_to
+    target: Org
+    via: orgUrl
+enums:
+- name: LogTypesEnum
+  values: [account, authentication, cas, create, emailMFA, oidc, password, sending]
+- name: LogSubtypesEnum
+  values: [authenticationSuccess, authorize, error, expiredCode, failure, idToken, invalidCode, login, logout, manage, noEmail, queued, request, samlValidate, send, sent, serviceValidate, success, token, userinfo, validate]
+- name: ServiceTypesEnum
+  values: [bridge, gateway, idGeneration, idp, mail, proxy]

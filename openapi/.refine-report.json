@@ -1,0 +1,14 @@
+{
+  "provider": "cirrus-identity",
+  "sources": [
+    "cirrus-identity-endpoints-api-openapi.yml"
+  ],
+  "outputs": [
+    "cirrus-identity-endpoints-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

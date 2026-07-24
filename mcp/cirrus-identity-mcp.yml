@@ -1,0 +1,17 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/cirrus-identity-log-api-openapi.json
+notes: >
+  No official hosted/remote MCP server was found for Cirrus Identity. This is a
+  candidate tool list derived one-to-one from the Log API OpenAPI operations.
+server:
+  name: cirrus-identity-log-api
+  transport: stdio
+tools:
+- name: get_orgs
+  description: Return the list of orgUrl values the authenticated credentials may query.
+  source_operation: openapi/cirrus-identity-log-api-openapi.json#get_orgs
+- name: get_org_logs
+  description: Return authentication and service log events for a specified orgUrl, with cursor paging and service/logType/logSubtype/tenant filters.
+  source_operation: openapi/cirrus-identity-log-api-openapi.json#get_org_logs

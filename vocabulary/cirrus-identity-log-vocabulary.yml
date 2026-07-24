@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cirrus-identity-log-api-openapi.json
+description: >
+  Controlled vocabulary the Cirrus Identity Log API publishes for classifying log events,
+  captured verbatim from the OpenAPI enum schemas.
+terms:
+- group: logType
+  schema: LogTypesEnum
+  values: [account, authentication, cas, create, emailMFA, oidc, password, sending]
+- group: logSubtype
+  schema: LogSubtypesEnum
+  values: [authenticationSuccess, authorize, error, expiredCode, failure, idToken, invalidCode, login, logout, manage, noEmail, queued, request, samlValidate, send, sent, serviceValidate, success, token, userinfo, validate]
+- group: service
+  schema: ServiceTypesEnum
+  values: [bridge, gateway, idGeneration, idp, mail, proxy]
