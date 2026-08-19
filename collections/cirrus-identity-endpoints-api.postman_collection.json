@@ -1,0 +1,652 @@
+{
+  "item": [
+    {
+      "id": "3eab3464-b7a0-4748-9445-518badd02e41",
+      "name": "endpoints",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7ed05bac-24bb-43d6-98d9-b46bce37e75b",
+          "name": "Return logs for a specified orgUrl",
+          "request": {
+            "name": "Return logs for a specified orgUrl",
+            "description": {
+              "content": "Returns an array of log events for the specified `orgUrl` value.\n\n### Query parameters\n\n- `orgUrl` (**required**): the organization URL for which to retrieve logs. This must match\n  your organization URL from the Cirrus Console _**exactly**_, including any trailing `/`.\n- `nextToken` (optional): token returned from a previous call to URL, logs returned\n  will start at the next record following the one referenced by this token. If not provided,\n  logs returned will start at 1 hour ago from the current time.\n- `limit` (optional): a value between 1 - 1000 indicating the number of log events to return.\n  Default is 1000.\n- filter parameters (all optional) -- these can be used to filter the results\n  - `service`: the service (e.g., *proxy* or *bridge*)\n  - `logType`: the log event type (e.g, *authentication* or *cas*)\n  - `logSubtype`: the log event sub-type (e.g., *request* or *success*)\n  - `tenant`: the tenant name\n\n### Rate Limiting\n\nTo avoid rate limiting, Cirrus Identity recommends a delay of at least five minutes between\nretrieval of sets of logs. For best results, consider enforcing this delay once the `/orgLogs`\nAPI response contains fewer log events than requested (via the `limit` parameter, up to the\nmaximum of 1000 log events).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgLogs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "orgUrl",
+                  "value": "<uri>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "logType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "logSubtype",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "service",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0fbb7593-42c4-4cb1-aecd-46a96ddfe49a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgLogs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orgUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "logType",
+                      "value": "emailMFA"
+                    },
+                    {
+                      "key": "logSubtype",
+                      "value": "token"
+                    },
+                    {
+                      "key": "tenant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service",
+                      "value": "proxy"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ref\": \"https://api.cirrusidentity.com/logs/v1/orgLogs?orgUrl=http%3A%2F%2Finstitution.edu%2F\",\n  \"next\": \"https://api.cirrusidentity.com/logs/v1/orgLogs?orgUrl=http%3A%2F%2Finstitution.edu%2F&nextToken=018ec539-2f4d-7e4c-9310-46ef060440a8\",\n  \"nextToken\": \"018ec539-2f4d-7e4c-9310-46ef060440a8\",\n  \"count\": 1,\n  \"logEvents\": [\n    {\n      \"logType\": \"authentication\",\n      \"timeStampISO\": \"2024-04-09T23:37:16+00:00\",\n      \"orgDomain\": \"institution.edu\",\n      \"service\": \"bridge\",\n      \"clientIP\": \"1.2.3.4\",\n      \"logSubtype\": \"request\",\n      \"correlationId\": \"757769a369\",\n      \"orgUrl\": \"http://institution.edu/\",\n      \"tenant\": \"institution-bridge\",\n      \"logData\": {\n        \"spEntityId\": \"https://institution-bridge.proxy.cirrusidentity.com/bridge\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7e936c0-6417-4183-96e2-0b48fd5075ed",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgLogs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orgUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "logType",
+                      "value": "emailMFA"
+                    },
+                    {
+                      "key": "logSubtype",
+                      "value": "token"
+                    },
+                    {
+                      "key": "tenant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service",
+                      "value": "proxy"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"invalid API authentication\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5d76b0a-94e4-4f35-9855-a6644ca5d9c7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgLogs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orgUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "logType",
+                      "value": "emailMFA"
+                    },
+                    {
+                      "key": "logSubtype",
+                      "value": "token"
+                    },
+                    {
+                      "key": "tenant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service",
+                      "value": "proxy"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Not authorized for org\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9642660b-ebfd-4a8c-b301-52201ce95068",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgLogs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orgUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "logType",
+                      "value": "emailMFA"
+                    },
+                    {
+                      "key": "logSubtype",
+                      "value": "token"
+                    },
+                    {
+                      "key": "tenant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service",
+                      "value": "proxy"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6520013-c630-4dd3-947f-c7bb066366ab",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgLogs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orgUrl",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "logType",
+                      "value": "emailMFA"
+                    },
+                    {
+                      "key": "logSubtype",
+                      "value": "token"
+                    },
+                    {
+                      "key": "tenant",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service",
+                      "value": "proxy"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"unknown error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81298e92-54fa-470b-89cf-eacbcaca8cc3",
+          "name": "Return a list of permitted orgUrls",
+          "request": {
+            "name": "Return a list of permitted orgUrls",
+            "description": {
+              "content": "Returns an array of `orgUrl` values that the current authenticated user is\npermitted to use (in the `orgUrl` query parameter for the `/` endpoint)\nfor retrieving logs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgUrls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c5dc23a7-23b9-4390-ab74-2876156a7460",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgUrls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orgUrls\": [\n    \"http://www.institution.edu\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bee33d3c-8fef-456a-a746-1c25bfd7fece",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgUrls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"invalid API authentication\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91fefbe0-18b8-44ae-b6ec-2e8d45881440",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgUrls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"unknown error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/logs/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7f81c3e4-364b-4b73-8e9a-3b1e49b37e0d",
+    "name": "Cirrus Identity Log endpoints API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nAll endpoints require HTTP Basic authentication using\n[Cirrus Identity Log API credentials](https://blog.cirrusidentity.com/documentation/log-api-credentials),\nprovisioned in the Cirrus Console. \n\n## `/logs/v1/orgUrls`\n\nReturns a list of permitted `orgUrls` for the provided credentials.\n\n## `/logs/v1/orgLogs`\n\nReturns logs for a specific `orgUrl` value. Expand the `/orgLogs` endpoint (below)\nfor details on parameters and schema.\n",
+      "type": "text/plain"
+    }
+  }
+}

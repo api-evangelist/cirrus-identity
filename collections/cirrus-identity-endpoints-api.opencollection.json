@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cirrus Identity Log endpoints API",
+    "version": "1.0.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return logs for a specified orgUrl",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/logs/v1/orgLogs",
+            "params": [
+              {
+                "name": "orgUrl",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "logType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "logSubtype",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "service",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns an array of log events for the specified `orgUrl` value.\n\n### Query parameters\n\n- `orgUrl` (**required**): the organization URL for which to retrieve logs. This must match\n  your organization URL from the Cirrus Console _**exactly**_, including any trailing `/`.\n- `nextToken` (optional): token returned from a previous call to URL, logs returned\n  will start at the next record following the one referenced by this token. If not provided,\n  logs returned will start at 1 hour ago from the cu"
+        },
+        {
+          "info": {
+            "name": "Return a list of permitted orgUrls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/logs/v1/orgUrls",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns an array of `orgUrl` values that the current authenticated user is\npermitted to use (in the `orgUrl` query parameter for the `/` endpoint)\nfor retrieving logs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
