@@ -1,19 +1,77 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Cirrus Identity Log endpoints API
-  description: "\nAll endpoints require HTTP Basic authentication using\n[Cirrus Identity Log API credentials](https://blog.cirrusidentity.com/documentation/log-api-credentials),\nprovisioned in the Cirrus Console. \n\n## `/logs/v1/orgUrls`\n\nReturns a list of permitted `orgUrls` for the provided credentials.\n\n## `/logs/v1/orgLogs`\n\nReturns logs for a specific `orgUrl` value. Expand the `/orgLogs` endpoint (below)\nfor details on parameters and schema.\n"
+  title: Cirrus Identity Log Endpoints API
+  description: 'All endpoints require HTTP Basic authentication using
+
+    Cirrus Identity Log API credentials,
+
+    provisioned in the Cirrus Console.
+
+
+    ## `/logs/v1/orgUrls`
+
+
+    Returns a list of permitted `orgUrls` for the provided credentials.
+
+
+    ## `/logs/v1/orgLogs`
+
+
+    Returns logs for a specific `orgUrl` value. Expand the `/orgLogs` endpoint (below)
+
+    for details on parameters and schema.'
   version: 1.0.3
 servers:
 - url: /logs/v1
 tags:
-- name: endpoints
+- name: Endpoints
 paths:
   /orgLogs:
     get:
       tags:
-      - endpoints
+      - Endpoints
       summary: Return logs for a specified orgUrl
-      description: "Returns an array of log events for the specified `orgUrl` value.\n\n### Query parameters\n\n- `orgUrl` (**required**): the organization URL for which to retrieve logs. This must match\n  your organization URL from the Cirrus Console _**exactly**_, including any trailing `/`.\n- `nextToken` (optional): token returned from a previous call to URL, logs returned\n  will start at the next record following the one referenced by this token. If not provided,\n  logs returned will start at 1 hour ago from the current time.\n- `limit` (optional): a value between 1 - 1000 indicating the number of log events to return.\n  Default is 1000.\n- filter parameters (all optional) -- these can be used to filter the results\n  - `service`: the service (e.g., *proxy* or *bridge*)\n  - `logType`: the log event type (e.g, *authentication* or *cas*)\n  - `logSubtype`: the log event sub-type (e.g., *request* or *success*)\n  - `tenant`: the tenant name\n\n### Rate Limiting\n\nTo avoid rate limiting, Cirrus Identity recommends a delay of at least five minutes between\nretrieval of sets of logs. For best results, consider enforcing this delay once the `/orgLogs`\nAPI response contains fewer log events than requested (via the `limit` parameter, up to the\nmaximum of 1000 log events)."
+      description: 'Returns an array of log events for the specified `orgUrl` value.
+
+
+        ### Query parameters
+
+
+        - `orgUrl` (**required**): the organization URL for which to retrieve logs. This must match
+
+        your organization URL from the Cirrus Console _**exactly**_, including any trailing `/`.
+
+        - `nextToken` (optional): token returned from a previous call to URL, logs returned
+
+        will start at the next record following the one referenced by this token. If not provided,
+
+        logs returned will start at 1 hour ago from the current time.
+
+        - `limit` (optional): a value between 1 - 1000 indicating the number of log events to return.
+
+        Default is 1000.
+
+        - filter parameters (all optional) -- these can be used to filter the results
+
+        - `service`: the service (e.g., *proxy* or *bridge*)
+
+        - `logType`: the log event type (e.g, *authentication* or *cas*)
+
+        - `logSubtype`: the log event sub-type (e.g., *request* or *success*)
+
+        - `tenant`: the tenant name
+
+
+        ### Rate Limiting
+
+
+        To avoid rate limiting, Cirrus Identity recommends a delay of at least five minutes between
+
+        retrieval of sets of logs. For best results, consider enforcing this delay once the `/orgLogs`
+
+        API response contains fewer log events than requested (via the `limit` parameter, up to the
+
+        maximum of 1000 log events).'
       operationId: get_org_logs
       security:
       - HTTPBasic: []
@@ -114,7 +172,7 @@ paths:
   /orgUrls:
     get:
       tags:
-      - endpoints
+      - Endpoints
       summary: Return a list of permitted orgUrls
       description: 'Returns an array of `orgUrl` values that the current authenticated user is
 
@@ -147,6 +205,86 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
+    ServiceTypesEnum:
+      type: string
+      enum:
+      - bridge
+      - gateway
+      - idGeneration
+      - idp
+      - mail
+      - proxy
+      title: ServiceTypesEnum
+      description: enum for valid Cirrus services
+    LogSubtypesEnum:
+      type: string
+      enum:
+      - authenticationSuccess
+      - authorize
+      - error
+      - expiredCode
+      - failure
+      - idToken
+      - invalidCode
+      - login
+      - logout
+      - manage
+      - noEmail
+      - queued
+      - request
+      - samlValidate
+      - send
+      - sent
+      - serviceValidate
+      - success
+      - token
+      - userinfo
+      - validate
+      title: LogSubtypesEnum
+      description: enum for Cirrus log subtypes
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    LogTypesEnum:
+      type: string
+      enum:
+      - account
+      - authentication
+      - cas
+      - create
+      - emailMFA
+      - oidc
+      - password
+      - sending
+      title: LogTypesEnum
+      description: enum for Cirrus log types
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     LogApiResponse:
       properties:
         ref:
@@ -186,86 +324,6 @@ components:
       - logEvents
       title: LogApiResponse
       description: wrapper response for log items
-    LogSubtypesEnum:
-      type: string
-      enum:
-      - authenticationSuccess
-      - authorize
-      - error
-      - expiredCode
-      - failure
-      - idToken
-      - invalidCode
-      - login
-      - logout
-      - manage
-      - noEmail
-      - queued
-      - request
-      - samlValidate
-      - send
-      - sent
-      - serviceValidate
-      - success
-      - token
-      - userinfo
-      - validate
-      title: LogSubtypesEnum
-      description: enum for Cirrus log subtypes
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    LogTypesEnum:
-      type: string
-      enum:
-      - account
-      - authentication
-      - cas
-      - create
-      - emailMFA
-      - oidc
-      - password
-      - sending
-      title: LogTypesEnum
-      description: enum for Cirrus log types
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ServiceTypesEnum:
-      type: string
-      enum:
-      - bridge
-      - gateway
-      - idGeneration
-      - idp
-      - mail
-      - proxy
-      title: ServiceTypesEnum
-      description: enum for valid Cirrus services
   securitySchemes:
     HTTPBasic:
       type: http

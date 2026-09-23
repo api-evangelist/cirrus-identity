@@ -1,7 +1,7 @@
 {
   "provider": "cirrus-identity",
   "sources": [
-    "cirrus-identity-endpoints-api-openapi.yml"
+    "_original/cirrus-identity-log-api-openapi.json"
   ],
   "outputs": [
     "cirrus-identity-endpoints-api-openapi.yml"
@@ -9,6 +9,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cirrus-identity-log-api-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "cirrus-identity-log-api-openapi.json: declared missing tag: endpoints",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "cirrus-identity-endpoints-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
