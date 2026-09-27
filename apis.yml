@@ -69,7 +69,7 @@ tags_raw:
 - Identity Federation
 apis:
 - aid: cirrus-identity:cirrus-identity-endpoints-api
-  name: Cirrus Identity endpoints API
+  name: Cirrus Identity Endpoints API
   description: The endpoints API from Cirrus Identity — 2 operation(s) for endpoints.
   humanURL: https://www.cirrusidentity.com/documentation/api
   baseURL: https://api.cirrusidentity.com/logs/v1

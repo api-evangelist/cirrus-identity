@@ -242,15 +242,6 @@ components:
       - validate
       title: LogSubtypesEnum
       description: enum for Cirrus log subtypes
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     LogTypesEnum:
       type: string
       enum:
@@ -324,6 +315,15 @@ components:
       - logEvents
       title: LogApiResponse
       description: wrapper response for log items
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     HTTPBasic:
       type: http
