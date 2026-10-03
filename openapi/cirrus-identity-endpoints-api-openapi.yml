@@ -205,17 +205,6 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
-    ServiceTypesEnum:
-      type: string
-      enum:
-      - bridge
-      - gateway
-      - idGeneration
-      - idp
-      - mail
-      - proxy
-      title: ServiceTypesEnum
-      description: enum for valid Cirrus services
     LogSubtypesEnum:
       type: string
       enum:
@@ -242,19 +231,15 @@ components:
       - validate
       title: LogSubtypesEnum
       description: enum for Cirrus log subtypes
-    LogTypesEnum:
-      type: string
-      enum:
-      - account
-      - authentication
-      - cas
-      - create
-      - emailMFA
-      - oidc
-      - password
-      - sending
-      title: LogTypesEnum
-      description: enum for Cirrus log types
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -276,6 +261,30 @@ components:
       - msg
       - type
       title: ValidationError
+    ServiceTypesEnum:
+      type: string
+      enum:
+      - bridge
+      - gateway
+      - idGeneration
+      - idp
+      - mail
+      - proxy
+      title: ServiceTypesEnum
+      description: enum for valid Cirrus services
+    LogTypesEnum:
+      type: string
+      enum:
+      - account
+      - authentication
+      - cas
+      - create
+      - emailMFA
+      - oidc
+      - password
+      - sending
+      title: LogTypesEnum
+      description: enum for Cirrus log types
     LogApiResponse:
       properties:
         ref:
@@ -315,15 +324,6 @@ components:
       - logEvents
       title: LogApiResponse
       description: wrapper response for log items
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
   securitySchemes:
     HTTPBasic:
       type: http
