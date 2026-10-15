@@ -2,6 +2,8 @@ generated: '2026-10-13'
 method: searched
 checked:
 - https://aws.amazon.com/marketplace/
+- https://technical.edugain.org/api.php?action=list_entities&type=idp&format=json
+- https://technical.edugain.org/api.php?action=list_entities&type=sp&format=json
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -21,3 +23,147 @@ edges:
   seller_name: Cirrus Identity
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: eduGAIN
+  partner: null
+  type: register
+  channel: standard-directory
+  relationship: network-participant
+  direction: partner-built
+  evidence: https://technical.edugain.org/api.php?action=list_entities&type=idp&format=json
+  category: research and education identity federation
+  contract_reference:
+    network: eduGAIN (GÉANT interfederation)
+    spec_file: null
+    roles:
+    - identity-provider
+    - service-provider
+    role: identity-and-service-provider
+    federations:
+    - INCOMMON
+    matched_by: domain:cirrusidentity.com
+    entities:
+    - entity_id: https://idp.cirrusidentity.com/idp
+      role: identity-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '11'
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: false
+    - entity_id: https://apps.cirrusidentity.com/shibboleth
+      role: service-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '5'
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: true
+    - entity_id: https://apps.proxy.cirrusidentity.com/sp
+      role: service-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '5'
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: true
+    - entity_id: https://cmu2-uat.proxy.cirrusidentity.com/sp
+      role: service-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: true
+    - entity_id: https://cmu2.proxy.cirrusidentity.com/sp
+      role: service-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: true
+    - entity_id: https://digitaltheatre-poc.proxy.cirrusidentity.com/sp
+      role: service-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: true
+    - entity_id: https://mit-saml2-uat.proxy.cirrusidentity.com/sp
+      role: service-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: true
+    - entity_id: https://mit-saml2.proxy.cirrusidentity.com/sp
+      role: service-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: true
+    - entity_id: https://support.proxy.cirrusidentity.com/sp
+      role: service-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '5'
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: true
+    - entity_id: https://uark2-uat.proxy.cirrusidentity.com/sp
+      role: service-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: true
+    - entity_id: https://uark2.proxy.cirrusidentity.com/sp
+      role: service-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: true
+    - entity_id: https://ufl-linking-uat.proxy.cirrusidentity.com/sp
+      role: service-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: true
+    - entity_id: https://ufl-linking.proxy.cirrusidentity.com/sp
+      role: service-provider
+      federation: INCOMMON
+      display_name: Cirrus Identity, Inc.
+      entity_categories:
+      - '43'
+      - '76'
+      sirtfi: true
+      coco: true
+    detected_by: sweep-higher-ed.py
+    detected: '2026-10-15'
+  detected_by: sweep-higher-ed.py
+  first_seen: '2026-10-15'
