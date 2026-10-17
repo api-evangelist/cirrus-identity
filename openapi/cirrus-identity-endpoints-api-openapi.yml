@@ -205,19 +205,6 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
-    LogTypesEnum:
-      type: string
-      enum:
-      - account
-      - authentication
-      - cas
-      - create
-      - emailMFA
-      - oidc
-      - password
-      - sending
-      title: LogTypesEnum
-      description: enum for Cirrus log types
     LogSubtypesEnum:
       type: string
       enum:
@@ -244,27 +231,6 @@ components:
       - validate
       title: LogSubtypesEnum
       description: enum for Cirrus log subtypes
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     ServiceTypesEnum:
       type: string
       enum:
@@ -276,6 +242,19 @@ components:
       - proxy
       title: ServiceTypesEnum
       description: enum for valid Cirrus services
+    LogTypesEnum:
+      type: string
+      enum:
+      - account
+      - authentication
+      - cas
+      - create
+      - emailMFA
+      - oidc
+      - password
+      - sending
+      title: LogTypesEnum
+      description: enum for Cirrus log types
     LogApiResponse:
       properties:
         ref:
@@ -315,6 +294,27 @@ components:
       - logEvents
       title: LogApiResponse
       description: wrapper response for log items
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     HTTPValidationError:
       properties:
         detail:
