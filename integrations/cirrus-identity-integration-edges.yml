@@ -9,6 +9,9 @@ checked:
 - https://www.antler.co/portfolio
 - https://www.techstars.com/portfolio
 - https://www.ycombinator.com/companies
+- https://hex.pm/api
+- https://packagist.org/packages
+- https://pub.dev/api
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -200,6 +203,63 @@ edges:
     year: '2015'
   detected_by: sweep-accelerator-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: Packagist
+  partner: packagist
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (PHP)
+  evidence: https://packagist.org/packages/cirrusidentity/simplesamlphp-module-authoauth2
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Packagist (public registry JSON)
+    spec_file: null
+    language: PHP
+    packages:
+    - name: cirrusidentity/simplesamlphp-module-authoauth2
+      version: v4.1.1
+      released: '2026-03-11'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/cirrusidentity/simplesamlphp-module-authoauth2
+      repo_leg: github-org:cirrusidentity
+      publisher_leg: org:cirrusidentity
+      matched_by: github-org
+    - name: cirrusidentity/simplesamlphp-module-cirrusgeneral
+      version: v2.0.4
+      released: '2024-11-19'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/cirrusidentity/simplesamlphp-module-cirrusgeneral
+      repo_leg: github-org:cirrusidentity
+      publisher_leg: org:cirrusidentity
+      matched_by: github-org
+    - name: cirrusidentity/simplesamlphp-module-ratelimit
+      version: v3.0.1
+      released: '2025-05-05'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/cirrusidentity/simplesamlphp-module-ratelimit
+      repo_leg: github-org:cirrusidentity
+      publisher_leg: org:cirrusidentity
+      matched_by: github-org
+    - name: cirrusidentity/simplesamlphp-module-shib2idpnameid
+      version: v2.1.2
+      released: '2026-06-03'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/cirrusidentity/simplesamlphp-module-shib2idpnameid
+      repo_leg: github-org:cirrusidentity
+      publisher_leg: org:cirrusidentity
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  detected_by: sweep-php-dart-elixir-package-registries.py
+  first_seen: '2026-10-22'
 source:
 - https://www.ycombinator.com/companies
 - https://500.co/companies
